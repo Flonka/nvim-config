@@ -250,9 +250,11 @@ require('lazy').setup({
 -- See `:help vim.o`
 
 -- Set highlight on search
-vim.o.hlsearch = false
+-- vim.o.hlsearch = false
 
 vim.o.relativenumber = true
+
+vim.o.scrolloff = 10
 
 -- Make line numbers default
 vim.wo.number = true
