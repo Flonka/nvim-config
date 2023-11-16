@@ -17,6 +17,7 @@ Based on the neovim kickstart project: https://github.com/nvim-lua/kickstart.nvi
 - [x] Terminal in nvim -  Add toggleterminal plugin
 - [ ] Java dev env ( lsp .. ) 
 - [ ] Ansible  dev env 
+- [ ] Zen mode https://github.com/folke/zen-mode.nvim  + twilight 
 
 
 ## Inspiration Links
