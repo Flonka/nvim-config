@@ -14,7 +14,7 @@ Based on the neovim kickstart project: https://github.com/nvim-lua/kickstart.nvi
 - [ ] Worspace support (Vs code like) . 
 - [ ] Multi repo git pull 
 - [ ] Link to remote git repo ( gihutb/bitbucket web )
-- [ ] Terminal in nvim -  Add toggleterminal plugin
+- [x] Terminal in nvim -  Add toggleterminal plugin
 - [ ] Java dev env ( lsp .. ) 
 - [ ] Ansible  dev env 
 

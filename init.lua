@@ -44,6 +44,7 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- nvim tree recommend settings on netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -244,6 +245,31 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
+
+  -- Terminal in nvim 
+  {'akinsho/toggleterm.nvim', version = "*", opts = {
+      open_mapping = [[<C-t>]],
+      auto_chdir = true,
+        -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
+      direction = 'float',
+  --   float_opts = {
+  --   -- The border key is *almost* the same as 'nvim_open_win'
+  --   -- see :h nvim_open_win for details on borders however
+  --   -- the 'curved' border is a custom border type
+  --   -- not natively supported but implemented in this plugin.
+  --   border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+  --   -- like `size`, width and height can be a number or function which is passed the current terminal
+  --   width = <value>,
+  --   height = <value>,
+  --   winblend = 3,
+  --   zindex = <value>,
+  -- },
+     float_opts = {
+        border = 'rounded',
+     },
+
+  }}
+
 }, {})
 
 -- [[ Setting options ]]
@@ -303,8 +329,14 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- [[ nvim tree keymaps ]] 
+vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
+vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
+vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
+vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
