@@ -267,8 +267,17 @@ require('lazy').setup({
      float_opts = {
         border = 'rounded',
      },
+    }
+  },
 
-  }}
+{
+    'ruifm/gitlinker.nvim',
+    version = '*',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+    },
+    opts = {},
+},
 
 }, {})
 
@@ -277,6 +286,11 @@ require('lazy').setup({
 
 -- Set highlight on search
 -- vim.o.hlsearch = false
+
+
+-- autowrite does not write when hidden
+-- vim.o.hidden = false
+-- vim.o.autowriteall = true
 
 vim.o.relativenumber = true
 
@@ -315,6 +329,7 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
+
 
 -- [[ Basic Keymaps ]]
 

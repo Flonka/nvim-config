@@ -18,6 +18,7 @@ Based on the neovim kickstart project: https://github.com/nvim-lua/kickstart.nvi
 - [ ] Java dev env ( lsp .. ) 
 - [ ] Ansible  dev env 
 - [ ] Zen mode https://github.com/folke/zen-mode.nvim  + twilight 
+- [ ] Autosave? Format on save (e.g. on go files / etc)  
 
 
 ## Inspiration Links
