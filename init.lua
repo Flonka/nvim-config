@@ -502,7 +502,16 @@ vim.defer_fn(function()
       'vimdoc',
       'vim',
       'bash',
-      'java'
+      'java',
+      'yaml',
+      'markdown',
+      'csv',
+      'html',
+      'css',
+      'json',
+      'javascript',
+      'xml',
+      'sql',
     },
 
     sync_install =  false,
