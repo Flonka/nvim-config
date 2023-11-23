@@ -512,6 +512,7 @@ vim.defer_fn(function()
       'javascript',
       'xml',
       'sql',
+      'dot',
     },
 
     sync_install =  false,
