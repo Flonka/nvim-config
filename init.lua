@@ -649,9 +649,17 @@ require('mason-lspconfig').setup()
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
+
+local lsputil = require('lspconfig.util')
 local servers = {
   -- clangd = {},
-  gopls = {},
+  gopls = {
+    -- root_dir = lsputil.root_pattern("go.work", "go.mod", ".git")
+    gopls = {
+      completeUnimported = true,
+      usePlaceholders = true,
+    }
+  },
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
