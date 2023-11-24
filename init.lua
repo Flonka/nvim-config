@@ -156,9 +156,13 @@ require('lazy').setup({
     },
   },
 
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000, config = function()
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    config = function()
       vim.cmd.colorscheme 'catppuccin'
-    end
+    end,
   },
 
   {
@@ -227,8 +231,8 @@ require('lazy').setup({
     config = function()
       require('nvim-tree').setup {
         update_focused_file = {
-          enable = true
-        }
+          enable = true,
+        },
       }
     end,
   },
@@ -247,66 +251,107 @@ require('lazy').setup({
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
 
-  -- Terminal in nvim 
-  {'akinsho/toggleterm.nvim', version = "*", opts = {
+  -- Terminal in nvim
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
       open_mapping = [[<C-t>]],
       auto_chdir = true,
-        -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
+      -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
       direction = 'float',
-  --   float_opts = {
-  --   -- The border key is *almost* the same as 'nvim_open_win'
-  --   -- see :h nvim_open_win for details on borders however
-  --   -- the 'curved' border is a custom border type
-  --   -- not natively supported but implemented in this plugin.
-  --   border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-  --   -- like `size`, width and height can be a number or function which is passed the current terminal
-  --   width = <value>,
-  --   height = <value>,
-  --   winblend = 3,
-  --   zindex = <value>,
-  -- },
-     float_opts = {
+      --   float_opts = {
+      --   -- The border key is *almost* the same as 'nvim_open_win'
+      --   -- see :h nvim_open_win for details on borders however
+      --   -- the 'curved' border is a custom border type
+      --   -- not natively supported but implemented in this plugin.
+      --   border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
+      --   -- like `size`, width and height can be a number or function which is passed the current terminal
+      --   width = <value>,
+      --   height = <value>,
+      --   winblend = 3,
+      --   zindex = <value>,
+      -- },
+      float_opts = {
         border = 'rounded',
-     },
-    }
+      },
+    },
   },
 
-{
+  {
     'ruifm/gitlinker.nvim',
     version = '*',
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
     opts = {},
-},
+  },
 
+  {
+    'stevearc/conform.nvim',
+    lazy = true,
+    event = { 'BufReadPre', 'BufNewFile' }, -- to disable, comment this out
+    config = function()
+      local conform = require 'conform'
+
+      conform.setup {
+        formatters_by_ft = {
+          javascript = { 'prettier' },
+          css = { 'prettier' },
+          html = { 'prettier' },
+          json = { 'prettier' },
+          yaml = { 'prettier' },
+          markdown = { 'prettier' },
+          graphql = { 'prettier' },
+          lua = { 'stylua' },
+          go = { 'goimports' },
+          -- python = { "isort", "black" },
+        },
+        format_on_save = {
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 3000,
+        },
+      }
+
+      vim.keymap.set({ 'n', 'v' }, '<leader>mp', function()
+        conform.format {
+          lsp_fallback = true,
+          async = false,
+          timeout_ms = 1000,
+        }
+      end, { desc = 'Format file or range (in visual mode)' })
+    end,
+  },
 }, {})
 
--- gitlinker 
-require('gitlinker').setup({
-      callbacks = {
-        -- Bitbucket onpremise server 
-        ["bitbucket.crosskey.fi"] = function (url_data)
-          -- Create a table to store the split parts
-          local repoSplit = {}
-          -- Use string.gmatch to iterate over the string parts
-          for part in url_data.repo:gmatch("[^/]+") do
-              table.insert(repoSplit, part)
-          end
-
-          local url = "https://" .. url_data.host
-            if url_data.port then
-              url = url .. ":" .. url_data.port
-            end
-            url = url .. "/projects/" .. repoSplit[1] .. "/repos/" .. repoSplit[2] .. "/browse/" .. url_data.file .. "?at=" .. url_data.rev
-          if url_data.lstart then
-            url = url .. "#" .. url_data.lstart
-            if url_data.lend then url = url .. "-" .. url_data.lend end
-          end
-        return url
+-- gitlinker
+require('gitlinker').setup {
+  callbacks = {
+    -- Bitbucket onpremise server
+    ['bitbucket.crosskey.fi'] = function(url_data)
+      -- Create a table to store the split parts
+      local repoSplit = {}
+      -- Use string.gmatch to iterate over the string parts
+      for part in url_data.repo:gmatch '[^/]+' do
+        table.insert(repoSplit, part)
       end
-    },
-})
+
+      local url = 'https://' .. url_data.host
+      if url_data.port then
+        url = url .. ':' .. url_data.port
+      end
+      url = url .. '/projects/' .. repoSplit[1] .. '/repos/' .. repoSplit[2] .. '/browse/' .. url_data.file .. '?at=' .. url_data.rev
+      if url_data.lstart then
+        url = url .. '#' .. url_data.lstart
+        if url_data.lend then
+          url = url .. '-' .. url_data.lend
+        end
+      end
+      return url
+    end,
+  },
+}
 
 -- local url = M.get_base_https_url(url_data)
 --   if not url_data.file or not url_data.rev then
@@ -331,7 +376,6 @@ require('gitlinker').setup({
 -- Set highlight on search
 -- vim.o.hlsearch = false
 
-
 -- autowrite does not write when hidden
 -- vim.o.hidden = false
 -- vim.o.autowriteall = true
@@ -342,7 +386,6 @@ vim.o.scrolloff = 10
 
 -- Make line numbers default
 vim.wo.number = true
-
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -374,7 +417,6 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.o.termguicolors = true
 
-
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -391,11 +433,11 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 -- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- [[ nvim tree keymaps ]] 
-vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
-vim.keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
-vim.keymap.set("n", "<leader>ec", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-vim.keymap.set("n", "<leader>er", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+-- [[ nvim tree keymaps ]]
+vim.keymap.set('n', '<leader>ee', '<cmd>NvimTreeToggle<CR>', { desc = 'Toggle file explorer' }) -- toggle file explorer
+vim.keymap.set('n', '<leader>ef', '<cmd>NvimTreeFindFileToggle<CR>', { desc = 'Toggle file explorer on current file' }) -- toggle file explorer on current file
+vim.keymap.set('n', '<leader>ec', '<cmd>NvimTreeCollapse<CR>', { desc = 'Collapse file explorer' }) -- collapse file explorer
+vim.keymap.set('n', '<leader>er', '<cmd>NvimTreeRefresh<CR>', { desc = 'Refresh file explorer' }) -- refresh file explorer
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -421,11 +463,11 @@ require('telescope').setup {
   },
   pickers = {
     find_files = {
-      follow = true
+      follow = true,
     },
     git_files = {
-      follow = true
-    }
+      follow = true,
+    },
   },
 }
 
@@ -440,17 +482,17 @@ local function find_git_root()
   local current_dir
   local cwd = vim.fn.getcwd()
   -- If the buffer is not associated with a file, return nil
-  if current_file == "" then
+  if current_file == '' then
     current_dir = cwd
   else
     -- Extract the directory from the current file's path
-    current_dir = vim.fn.fnamemodify(current_file, ":h")
+    current_dir = vim.fn.fnamemodify(current_file, ':h')
   end
 
   -- Find the Git root directory from the current file's path
-  local git_root = vim.fn.systemlist("git -C " .. vim.fn.escape(current_dir, " ") .. " rev-parse --show-toplevel")[1]
+  local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')[1]
   if vim.v.shell_error ~= 0 then
-    print("Not a git repository. Searching on current working directory")
+    print 'Not a git repository. Searching on current working directory'
     return cwd
   end
   return git_root
@@ -460,9 +502,9 @@ end
 local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
-    require('telescope.builtin').live_grep({
-      search_dirs = {git_root},
-    })
+    require('telescope.builtin').live_grep {
+      search_dirs = { git_root },
+    }
   end
 end
 
@@ -515,7 +557,7 @@ vim.defer_fn(function()
       'dot',
     },
 
-    sync_install =  false,
+    sync_install = false,
     ignore_install = {},
     modules = {},
 
@@ -650,7 +692,7 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 
-local lsputil = require('lspconfig.util')
+local lsputil = require 'lspconfig.util'
 local servers = {
   -- clangd = {},
   gopls = {
@@ -658,7 +700,7 @@ local servers = {
     gopls = {
       completeUnimported = true,
       usePlaceholders = true,
-    }
+    },
   },
   -- pyright = {},
   -- rust_analyzer = {},
