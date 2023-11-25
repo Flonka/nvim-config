@@ -6,6 +6,7 @@ Based on the neovim kickstart project: https://github.com/nvim-lua/kickstart.nvi
 
 - Install a terminal capable of "truecolor", e.g. iterm2/kitty
 - Telescope plugin needs ripgrep installed
+- Go, npm, ... (probably some more)
 
 ## Todo
 
@@ -24,4 +25,4 @@ Based on the neovim kickstart project: https://github.com/nvim-lua/kickstart.nvi
 
 - https://github.com/josean-dev/dev-environment-files
 - https://github.com/ThePrimeagen/init.lua
-- https://github.com/radleylewis/nvim
+- https://github.com/radleylewis/nvim, https://www.youtube.com/watch?v=ZjMzBd1Dqz8
