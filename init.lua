@@ -48,6 +48,8 @@ vim.g.maplocalleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+require "flonka.core"
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -623,7 +625,7 @@ require("mason-lspconfig").setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 
-local lsputil = require "lspconfig.util"
+-- local lsputil = require "lspconfig.util"
 local servers = {
   -- clangd = {},
   gopls = {
