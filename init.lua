@@ -153,6 +153,7 @@ vim.defer_fn(function()
       "java",
       "yaml",
       "markdown",
+      "markdown_inline",
       "csv",
       "html",
       "css",
@@ -161,6 +162,7 @@ vim.defer_fn(function()
       "xml",
       "sql",
       "dot",
+      "regex",
     },
 
     sync_install = false,
