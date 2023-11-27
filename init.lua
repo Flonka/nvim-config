@@ -1,4 +1,4 @@
-require "flonka.core"
+require "flonka"
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
