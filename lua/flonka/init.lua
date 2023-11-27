@@ -1,2 +1,2 @@
 require "flonka.core"
-require "flonka.plugins"
+require "flonka.lazy"
