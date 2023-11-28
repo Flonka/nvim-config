@@ -198,47 +198,6 @@ require("lazy").setup({
     end,
   },
 
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
-
-  -- Terminal in nvim
-  {
-    "akinsho/toggleterm.nvim",
-    version = "*",
-    opts = {
-      open_mapping = [[<C-t>]],
-      auto_chdir = true,
-      -- direction = 'vertical' | 'horizontal' | 'tab' | 'float',
-      direction = "float",
-      --   float_opts = {
-      --   -- The border key is *almost* the same as 'nvim_open_win'
-      --   -- see :h nvim_open_win for details on borders however
-      --   -- the 'curved' border is a custom border type
-      --   -- not natively supported but implemented in this plugin.
-      --   border = 'single' | 'double' | 'shadow' | 'curved' | ... other options supported by win open
-      --   -- like `size`, width and height can be a number or function which is passed the current terminal
-      --   width = <value>,
-      --   height = <value>,
-      --   winblend = 3,
-      --   zindex = <value>,
-      -- },
-      float_opts = {
-        border = "rounded",
-      },
-    },
-  },
-
   {
     "ruifm/gitlinker.nvim",
     version = "*",

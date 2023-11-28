@@ -2,7 +2,7 @@
 -- See `:help vim.o`
 
 -- Set highlight on search
--- vim.o.hlsearch = false
+vim.o.hlsearch = false
 
 -- autowrite does not write when hidden
 -- vim.o.hidden = false
