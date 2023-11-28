@@ -314,7 +314,8 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  dotls = {},
+  jdtls = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
