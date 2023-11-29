@@ -1,2 +1,4 @@
 require "flonka.lazy"
-require "flonka.core"
+require "flonka.options"
+require "flonka.keymaps"
+require "flonka.autocommands"
