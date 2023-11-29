@@ -1,13 +1,3 @@
--- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
--- nvim tree recommend settings on netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -32,11 +22,6 @@ vim.opt.rtp:prepend(lazypath)
 --    as they will be available in your neovim runtime.
 require("lazy").setup({
   { import = "flonka.plugins" },
-  -- NOTE: First, some plugins that don't require any configuration
-
-  -- Git related plugins
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
 
   -- Detect tabstop and shiftwidth automatically
   "tpope/vim-sleuth",
@@ -78,44 +63,6 @@ require("lazy").setup({
 
   -- Useful plugin to show you pending keybinds.
   { "folke/which-key.nvim", opts = {} },
-  {
-    -- Adds git related signs to the gutter, as well as utilities for managing changes
-    "lewis6991/gitsigns.nvim",
-    opts = {
-      -- See `:help gitsigns.txt`
-      signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-      },
-      on_attach = function(bufnr)
-        vim.keymap.set("n", "<leader>hp", require("gitsigns").preview_hunk, { buffer = bufnr, desc = "Preview git hunk" })
-
-        -- don't override the built-in and fugitive keymaps
-        local gs = package.loaded.gitsigns
-        vim.keymap.set({ "n", "v" }, "]c", function()
-          if vim.wo.diff then
-            return "]c"
-          end
-          vim.schedule(function()
-            gs.next_hunk()
-          end)
-          return "<Ignore>"
-        end, { expr = true, buffer = bufnr, desc = "Jump to next hunk" })
-        vim.keymap.set({ "n", "v" }, "[c", function()
-          if vim.wo.diff then
-            return "[c"
-          end
-          vim.schedule(function()
-            gs.prev_hunk()
-          end)
-          return "<Ignore>"
-        end, { expr = true, buffer = bufnr, desc = "Jump to previous hunk" })
-      end,
-    },
-  },
 
   {
     "catppuccin/nvim",
@@ -197,16 +144,6 @@ require("lazy").setup({
       }
     end,
   },
-
-  {
-    "ruifm/gitlinker.nvim",
-    version = "*",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    opts = {},
-  },
-
   {
     "stevearc/conform.nvim",
     lazy = true,

@@ -1,3 +1,4 @@
+require "flonka.globals"
 require "flonka.lazy"
 require "flonka.options"
 require "flonka.keymaps"
