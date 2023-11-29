@@ -62,7 +62,7 @@ require("lazy").setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { "folke/which-key.nvim", opts = {} },
+  { "folke/which-key.nvim", event = "VeryLazy", opts = {} },
 
   {
     "catppuccin/nvim",
@@ -146,10 +146,15 @@ require("lazy").setup({
   },
   {
     "stevearc/conform.nvim",
-    lazy = true,
     event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
     config = function()
       local conform = require "conform"
+
+      local format_options = {
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 5000,
+      }
 
       conform.setup {
         formatters_by_ft = {
@@ -164,19 +169,11 @@ require("lazy").setup({
           go = { "goimports", "gofumpt" },
           -- python = { "isort", "black" },
         },
-        format_on_save = {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 5000,
-        },
+        format_on_save = format_options,
       }
 
       vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-        conform.format {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 5000,
-        }
+        conform.format(format_options)
       end, { desc = "Format file or range (in visual mode)" })
     end,
   },
