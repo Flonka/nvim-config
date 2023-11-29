@@ -315,7 +315,9 @@ local servers = {
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   dotls = {},
-  jdtls = {},
+  -- jdtls , set filetypes to "nil" workaround to disable nvim-lspconfig client.
+  -- In order to install the lsp via mason, but use the nvim-jdtls plugin via ftplugin setup.
+  jdtls = { filetypes = { "nil" } },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
