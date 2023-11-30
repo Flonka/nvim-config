@@ -53,41 +53,52 @@ return {
     },
     lazy = true,
     event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
-    opts = {
-      callbacks = {
-        -- Bitbucket onpremise server
-        ["bitbucket.crosskey.fi"] = function(url_data)
-          -- Create a table to store the split parts
-          local repoSplit = {}
-          -- Use string.gmatch to iterate over the string parts
-          for part in url_data.repo:gmatch "[^/]+" do
-            table.insert(repoSplit, part)
-          end
+    config = function()
+      local gitlinker = require "gitlinker"
 
-          local url = "https://" .. url_data.host
-          if url_data.port then
-            url = url .. ":" .. url_data.port
-          end
-
-          url = url
-            .. "/projects/"
-            .. repoSplit[1]
-            .. "/repos/"
-            .. repoSplit[2]
-            .. "/browse/"
-            .. url_data.file
-            .. "?at="
-            .. url_data.rev
-
-          if url_data.lstart then
-            url = url .. "#" .. url_data.lstart
-            if url_data.lend then
-              url = url .. "-" .. url_data.lend
+      gitlinker.setup {
+        callbacks = {
+          -- Bitbucket onpremise server
+          ["bitbucket.crosskey.fi"] = function(url_data)
+            -- Create a table to store the split parts
+            local repoSplit = {}
+            -- Use string.gmatch to iterate over the string parts
+            for part in url_data.repo:gmatch "[^/]+" do
+              table.insert(repoSplit, part)
             end
-          end
-          return url
-        end,
-      },
-    },
+
+            local url = "https://" .. url_data.host
+            if url_data.port then
+              url = url .. ":" .. url_data.port
+            end
+
+            url = url .. "/projects/" .. repoSplit[1] .. "/repos/" .. repoSplit[2] .. "/browse"
+
+            if url_data.file then
+              url = url .. "/" .. url_data.file
+            end
+
+            if url_data.rev then
+              url = url .. "?at=" .. url_data.rev
+            end
+
+            if url_data.lstart then
+              url = url .. "#" .. url_data.lstart
+              if url_data.lend then
+                url = url .. "-" .. url_data.lend
+              end
+            end
+            return url
+          end,
+        },
+      }
+      -- Open on remote
+      vim.keymap.set("n", "<leader>gY", function()
+        gitlinker.get_buf_range_url("n", { action_callback = gitlinker.actions.open_in_browser })
+      end, { desc = "Open file on git remote", silent = true })
+      vim.keymap.set("n", "<leader>gB", function()
+        gitlinker.get_repo_url { action_callback = gitlinker.actions.open_in_browser }
+      end, { desc = "Open base repository on remote", silent = true })
+    end,
   },
 }
