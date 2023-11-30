@@ -26,7 +26,7 @@ require("lazy").setup({
   -- Detect tabstop and shiftwidth automatically
   {
     "tpope/vim-sleuth",
-    event = "BufReadPost",
+    event = { "BufReadPost", "BuFNewFile" },
   },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
