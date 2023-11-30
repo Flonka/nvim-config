@@ -92,11 +92,10 @@ return {
           end,
         },
       }
-      -- Open on remote
+      -- Open on remote normal and visual mode
       vim.keymap.set("n", "<leader>gY", function()
         gitlinker.get_buf_range_url("n", { action_callback = gitlinker.actions.open_in_browser })
       end, { desc = "Open file on git remote", silent = true })
-
       vim.keymap.set("v", "<leader>gY", function()
         gitlinker.get_buf_range_url("v", { action_callback = gitlinker.actions.open_in_browser })
       end, { desc = "Open file on git remote", silent = true })
