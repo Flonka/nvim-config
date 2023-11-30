@@ -12,11 +12,14 @@ vim.keymap.set("n", "<leader>j", vim.cmd.update, { desc = "Write file" })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+vim.keymap.set("n", "<leader>q", vim.cmd.quit, { desc = "Quit Buffer" })
+vim.keymap.set("n", "<leader>Q", vim.cmd.quitall, { desc = "Quit All" })
+
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
--- vim.keymap.set("n", "<leader>ed", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>ll", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>lL", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- [[ nvim tree keymaps ]]
 vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
