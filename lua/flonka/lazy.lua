@@ -24,7 +24,10 @@ require("lazy").setup({
   { import = "flonka.plugins" },
 
   -- Detect tabstop and shiftwidth automatically
-  "tpope/vim-sleuth",
+  {
+    "tpope/vim-sleuth",
+    event = "BufReadPost",
+  },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -48,6 +51,7 @@ require("lazy").setup({
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
@@ -76,6 +80,7 @@ require("lazy").setup({
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
     -- See `:help lualine.txt`
     opts = {
       options = {
@@ -97,7 +102,7 @@ require("lazy").setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { "numToStr/Comment.nvim", opts = {} },
+  { "numToStr/Comment.nvim", event = "BufReadPost", opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   {
@@ -123,6 +128,7 @@ require("lazy").setup({
   {
     -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
