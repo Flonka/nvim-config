@@ -15,13 +15,15 @@ return {
   },
 
   config = function()
+    -- [[ Configure nvim-cmp ]]
+    -- See `:help cmp`
     local cmp = require "cmp"
     local luasnip = require "luasnip"
     require("luasnip.loaders.from_vscode").lazy_load()
     luasnip.config.setup {}
-    -- [[ Configure nvim-cmp ]]
-    -- See `:help cmp`
 
+    -- https://github.com/LuaLS/lua-language-server/issues/2214
+    ---@diagnostic disable-next-line missing-fields
     cmp.setup {
       snippet = {
         expand = function(args)
