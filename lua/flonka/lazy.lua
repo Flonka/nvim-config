@@ -23,14 +23,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   { import = "flonka.plugins" },
 
-  -- Detect tabstop and shiftwidth automatically
-  {
-    "tpope/vim-sleuth",
-    event = { "BufReadPost", "BuFNewFile" },
-  },
-
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
     "neovim/nvim-lspconfig",
