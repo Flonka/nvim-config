@@ -1,9 +1,10 @@
 return {
   -- Git related plugins
-  "tpope/vim-fugitive",
+  { "tpope/vim-fugitive", event = "VeryLazy" },
   {
     -- Adds git related signs to the gutter, as well as utilities for managing changes
     "lewis6991/gitsigns.nvim",
+    event = "VeryLazy",
     opts = {
       -- See `:help gitsigns.txt`
       signs = {
