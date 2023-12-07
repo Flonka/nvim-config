@@ -53,15 +53,22 @@ return {
     end,
   },
 
+  -- {
+  --   "catppuccin/nvim",
+  --   name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme "catppuccin"
+  --   end,
+  -- },
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "rebelot/kanagawa.nvim",
+    -- name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "kanagawa"
     end,
   },
-
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",
@@ -70,7 +77,8 @@ return {
     opts = {
       options = {
         -- icons_enabled = false,
-        theme = "catppuccin",
+        -- https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md
+        theme = "auto",
         -- component_separators = '|',
         -- section_separators = '',
       },
