@@ -100,6 +100,10 @@ return {
         gitlinker.get_buf_range_url("v", { action_callback = gitlinker.actions.open_in_browser })
       end, { desc = "Open file on git remote", silent = true })
 
+      vim.keymap.set("n", "<leader>gy", function()
+        gitlinker.get_buf_range_url("n", { action_callback = gitlinker.actions.copy_to_clipboard })
+      end, { desc = "Copy git link to clipboard", silent = true })
+
       vim.keymap.set("n", "<leader>gB", function()
         gitlinker.get_repo_url { action_callback = gitlinker.actions.open_in_browser }
       end, { desc = "Open base repository on remote", silent = true })
