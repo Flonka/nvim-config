@@ -53,22 +53,22 @@ return {
     end,
   },
 
-  -- {
-  --   "catppuccin/nvim",
-  --   name = "catppuccin",
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme "catppuccin"
-  --   end,
-  -- },
   {
-    "rebelot/kanagawa.nvim",
-    -- name = "catppuccin",
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme "kanagawa"
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
+  -- {
+  --   "rebelot/kanagawa.nvim",
+  --   -- name = "catppuccin",
+  --   priority = 1000,
+  --   config = function()
+  --     vim.cmd.colorscheme "kanagawa"
+  --   end,
+  -- },
   {
     -- Set lualine as statusline
     "nvim-lualine/lualine.nvim",

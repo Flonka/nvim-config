@@ -20,6 +20,7 @@ return {
           return vim.fn.executable "make" == 1
         end,
       },
+      "nvim-telescope/telescope-ui-select.nvim",
     },
     config = function()
       require("telescope").setup {
@@ -39,9 +40,17 @@ return {
             follow = true,
           },
         },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+              -- even more opts
+            },
+          },
+        },
       }
       -- Enable telescope fzf native, if installed
       pcall(require("telescope").load_extension, "fzf")
+      require("telescope").load_extension "ui-select"
     end,
   },
 
