@@ -20,7 +20,7 @@ Based on the neovim kickstart project: https://github.com/nvim-lua/kickstart.nvi
 - [ ] Ansible dev env
 - [ ] Zen mode https://github.com/folke/zen-mode.nvim + twilight
 - [ ] Autosave? Format on save (e.g. on go files / etc)
-- [ ] Autoformat/configure formatting on save https://github.com/stevearc/conform.nvim#formatters
+- [x] Autoformat/configure formatting on save https://github.com/stevearc/conform.nvim#formatters
 - [x] https://github.com/folke/noice.nvim, experimental ui
 
 ## Inspiration Links
