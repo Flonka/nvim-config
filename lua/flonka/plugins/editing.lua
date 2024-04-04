@@ -25,6 +25,7 @@ return {
   -- "gc" to comment visual regions/lines
   { "numToStr/Comment.nvim", event = { "BufReadPost", "BuFNewFile" }, opts = {} },
 
+  -- Formatting plugin
   {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
