@@ -35,9 +35,15 @@ return {
         pickers = {
           find_files = {
             follow = true,
+            hidden = true,
           },
           git_files = {
             follow = true,
+          },
+          live_grep = {
+            additional_args = function(opts)
+              return { "--hidden" }
+            end,
           },
         },
         extensions = {
