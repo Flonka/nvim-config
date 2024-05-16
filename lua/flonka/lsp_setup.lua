@@ -22,7 +22,7 @@ local servers = {
       usePlaceholders = true,
     },
   },
-  -- pyright = {},
+  pyright = {},
   -- rust_analyzer = {},
   tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
