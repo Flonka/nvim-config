@@ -50,7 +50,7 @@ return {
           graphql = { "prettier" },
           lua = { "stylua" },
           go = { "goimports", "gofumpt" },
-          -- python = { "isort", "black" },
+          python = { "black" },
         },
         format_on_save = format_options,
       }
