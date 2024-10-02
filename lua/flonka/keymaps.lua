@@ -92,3 +92,6 @@ vim.keymap.set("n", "<leader>/", function()
     previewer = false,
   })
 end, { desc = "[/] Fuzzily search in current buffer" })
+
+-- Fun keymaps
+vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
