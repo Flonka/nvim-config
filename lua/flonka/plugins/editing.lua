@@ -51,6 +51,7 @@ return {
           lua = { "stylua" },
           go = { "goimports", "gofumpt" },
           python = { "black" },
+          groovy = { "npm-groovy-lint" },
         },
         format_on_save = format_options,
       }
