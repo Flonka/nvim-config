@@ -173,4 +173,24 @@ return {
       require("todo-comments").setup {}
     end,
   },
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      -- osx fix for -E suffix files
+      -- https://github.com/nvim-pack/nvim-spectre/issues/118
+      require("spectre").setup {
+        replace_engine = {
+          ["sed"] = {
+            cmd = "sed",
+            args = {
+              "-i",
+              "",
+              "-E",
+            },
+          },
+        },
+      }
+    end,
+  },
 }

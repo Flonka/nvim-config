@@ -95,3 +95,7 @@ end, { desc = "[/] Fuzzily search in current buffer" })
 
 -- Fun keymaps
 vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+
+vim.keymap.set("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+  desc = "Toggle Spectre",
+})
