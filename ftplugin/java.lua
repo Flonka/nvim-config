@@ -74,10 +74,12 @@ local config = {
         enabled = false,
         -- tabSize = 1,
         -- insertSpaces = false,
-        -- settings = {
-        --   url = "~/checkstyle.xml",
-        --   profile = "Checkstyle",
-        -- },
+        settings = {
+          -- Use Google Java style guidelines for formatting
+          -- To use, make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
+          url = "~/code/eclipse-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
       },
     },
   },
