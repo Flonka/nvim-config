@@ -1,6 +1,16 @@
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 -- https://github.com/mfussenegger/nvim-jdtls
 local home = os.getenv "HOME"
+
+-- 💀
+-- This is the default if not provided, you can remove it. Or adjust as needed.
+-- One dedicated LSP server & client will be started per unique root_dir
+local root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew" }
+-- eclipse.jdt.ls stores project specific data within a folder. If you are working
+-- with multiple different projects, each project must use a dedicated data directory.
+-- This variable is used to configure eclipse to use the directory name of the
+-- current project found using the root_marker as the folder for project specific data.
+local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 local config = {
   -- The command that starts the language server
   --
@@ -51,20 +61,24 @@ local config = {
     -- See `data directory configuration` section in the README
     "-data",
     -- "/path/to/unique/per/project/workspace/folder",
-    "/Users/flonnqvi/Cbs/java-wrk",
+    workspace_folder,
   },
-
-  -- 💀
-  -- This is the default if not provided, you can remove it. Or adjust as needed.
-  -- One dedicated LSP server & client will be started per unique root_dir
-  root_dir = require("jdtls.setup").find_root { ".git", "mvnw", "gradlew" },
-
+  root_dir = root_dir,
   -- Here you can configure eclipse.jdt.ls specific settings
   -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
   -- for a list of options
   settings = {
     java = {
       -- home = "/Library/Java/JavaVirtualMachines/temurin-17.jdk/Contents/Home",
+      format = {
+        enabled = false,
+        -- tabSize = 1,
+        -- insertSpaces = false,
+        -- settings = {
+        --   url = "~/checkstyle.xml",
+        --   profile = "Checkstyle",
+        -- },
+      },
     },
   },
 
