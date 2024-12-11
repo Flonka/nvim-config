@@ -36,6 +36,10 @@ return {
           find_files = {
             follow = true,
             hidden = true,
+            theme = "ivy",
+            layout_config = {
+              height = 0.8,
+            },
           },
           git_files = {
             follow = true,
