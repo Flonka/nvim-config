@@ -24,7 +24,7 @@ local servers = {
   },
   pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
   dotls = {},
   -- jdtls , set filetypes to "nil" workaround to disable nvim-lspconfig client.
