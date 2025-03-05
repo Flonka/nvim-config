@@ -8,6 +8,13 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- vim.keymap.set("n", "<leader>j", "<cmd>update<CR>", { desc = "Write file"})
 vim.keymap.set("n", "<leader>j", vim.cmd.update, { desc = "Write file" })
 
+vim.keymap.set(
+  "n",
+  "cp",
+  '<cmd>let @+ = expand("%")<CR>',
+  { desc = "Copy current buffer relative filepath to clipboard" }
+)
+
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
