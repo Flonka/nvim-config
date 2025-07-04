@@ -44,3 +44,10 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = "menuone,noselect"
 
 vim.o.termguicolors = true
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.bo.tabstop = 4
+  end,
+})
